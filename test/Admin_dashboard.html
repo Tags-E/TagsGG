@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodWatch - Drainage Monitoring System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+</head>
+<body>
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-cloud-rain"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>FloodWatch</h1>
+                    <p>Drainage Monitoring System</p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- Alerts Button -->
+                <button class="btn-icon alerts-btn" id="alertsBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="alert-badge" id="alertBadge">0</span>
+                </button>
+
+                <!-- Membership Badge -->
+                <div class="membership-badge" id="membershipBadge">
+                    <i class="fas fa-crown"></i>
+                    <span id="membershipText">Upgrade to Premium</span>
+                </div>
+
+                <!-- User Menu -->
+                <div class="user-menu">
+                    <button class="user-btn" id="userBtn">
+                        <i class="fas fa-user"></i>
+                        <span id="userName">Demo User</span>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <button class="dropdown-item" id="viewProfileBtn">View Profile</button>
+                        <button class="dropdown-item" id="membershipSettingsBtn">Membership Settings</button>
+                        <button class="dropdown-item">Help & Support</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Dashboard Stats -->
+            <div class="stats-grid" id="statsGrid">
+                <!-- Stats cards will be injected here -->
+            </div>
+
+            <!-- Tabs Navigation -->
+            <div class="tabs">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="report">Report Issue</button>
+                    <button class="tab-btn" data-tab="analytics">Analytics</button>
+                    <button class="tab-btn" data-tab="profile">Profile</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div class="tab-content active" id="overview">
+                    <div class="overview-grid">
+                        <div class="overview-main">
+                            <!-- Interactive Map -->
+                            <div class="card map-card">
+                                <div class="map-header">
+                                    <div class="map-title">
+                                        <i class="fas fa-circle animate-pulse"></i>
+                                        Live Flood Map
+                                    </div>
+                                    <div class="map-legend">
+                                        <p class="legend-title">Severity</p>
+                                        <div class="legend-items">
+                                            <div class="legend-item">
+                                                <span class="legend-dot critical"></span>
+                                                <span>Critical</span>
+                                            </div>
+                                            <div class="legend-item">
+                                                <span class="legend-dot high"></span>
+                                                <span>High</span>
+                                            </div>
+                                            <div class="legend-item">
+                                                <span class="legend-dot medium"></span>
+                                                <span>Medium</span>
+                                            </div>
+                                            <div class="legend-item">
+                                                <span class="legend-dot low"></span>
+                                                <span>Low</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-container" id="mapContainer">
+                                    <div id="floodMap" class="realtime-map"></div>
+                                </div>
+                                <div class="map-details hidden" id="mapDetails">
+                                    <!-- Selected alert details -->
+                                </div>
+                            </div>
+
+                            <!-- Flood Alerts List -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <h3>Active Flood Alerts</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="alerts-list" id="alertsList">
+                                        <!-- Alerts will be injected here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Community Reports -->
+                        <div class="overview-sidebar">
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <h3>Community Reports</h3>
+                                    <span class="badge badge-warning" id="reportsLimitBadge"></span>
+                                </div>
+                                <div class="card-content">
+                                    <div class="reports-list" id="reportsList">
+                                        <!-- Reports will be injected here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Tab -->
+                <div class="tab-content" id="report">
+                    <div class="report-grid">
+                        <div class="report-main">
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <h3>Report Drainage Issue</h3>
+                                    <span class="reports-remaining" id="reportsRemaining"></span>
+                                </div>
+                                <div class="card-content">
+                                    <form id="reportForm" class="report-form">
+                                        <div class="form-group">
+                                            <label for="location">Location *</label>
+                                            <div class="input-group">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <input type="text" id="location" placeholder="Enter street address or location" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="severity">Severity Level *</label>
+                                            <select id="severity" required>
+                                                <option value="minor">Minor - Small pooling, no blockage</option>
+                                                <option value="moderate" selected>Moderate - Standing water, slow drainage</option>
+                                                <option value="severe">Severe - Major blockage, flooding risk</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="description">Description *</label>
+                                            <textarea id="description" rows="4" placeholder="Describe the drainage issue in detail..." required></textarea>
+                                        </div>
+
+                                        <div class="upload-area">
+                                            <i class="fas fa-upload"></i>
+                                            <p class="upload-text" id="uploadText">Upload photos</p>
+                                            <p class="upload-hint">Click to browse or drag and drop</p>
+                                        </div>
+
+                                        <div class="report-limit-warning hidden" id="reportLimitWarning">
+                                            <i class="fas fa-lock"></i>
+                                            <div>
+                                                <p class="warning-title">Report Limit Reached</p>
+                                                <p class="warning-text">You've used all 3 free reports this month. Upgrade to Premium for unlimited reports.</p>
+                                                <button type="button" class="btn btn-warning" id="upgradeFromFormBtn">Upgrade Now</button>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            <i class="fas fa-paper-plane"></i>
+                                            Submit Report
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="report-sidebar">
+                            <div id="userProfileCard"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Tab -->
+                <div class="tab-content" id="analytics">
+                    <div class="analytics-header">
+                        <div>
+                            <i class="fas fa-chart-line"></i>
+                            <h2>Analytics Dashboard</h2>
+                        </div>
+                        <button class="btn btn-outline" id="exportDataBtn">
+                            <i class="fas fa-download"></i>
+                            Export Data
+                        </button>
+                    </div>
+                    <div class="analytics-grid">
+                        <div class="card analytics-card" id="weeklyChart">
+                            <div class="analytics-locked">
+                                <div class="locked-content">
+                                    <i class="fas fa-lock"></i>
+                                    <h3>Premium Feature</h3>
+                                    <p>Unlock advanced analytics</p>
+                                    <button class="btn btn-warning btn-sm analytics-upgrade-btn" type="button">Upgrade Now</button>
+                                </div>
+                            </div>
+                            <div class="card-header">
+                                <h3>Weekly Flood Activity</h3>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="weeklyActivityChart" width="400" height="300"></canvas>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+                <!-- Profile Tab -->
+                <div class="tab-content" id="profile">
+                    <div class="profile-container">
+                        <div id="userProfileFull"></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Membership Modal -->
+    <div class="modal" id="membershipModal">
+        <div class="modal-overlay" id="membershipModalOverlay"></div>
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Choose Your Plan</h2>
+                <button class="modal-close" id="membershipModalClose" type="button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+</body>
+</html>

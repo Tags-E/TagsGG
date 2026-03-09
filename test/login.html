@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FloodWatch</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="auth-body">
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cloud-rain"></i>
+                </div>
+                <h1>FloodWatch</h1>
+                <p>Drainage Monitoring System</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-content">
+                <h2>Welcome Back</h2>
+                <p class="auth-subtitle">Sign in to your account to continue</p>
+
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="Enter your email"
+                                required
+                                autocomplete="email"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                placeholder="Enter your password"
+                                required
+                                autocomplete="current-password"
+                            >
+                            <button type="button" class="password-toggle" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-auth">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Demo Credentials -->
+                <div class="demo-credentials">
+                    <p class="demo-title"><i class="fas fa-info-circle"></i> Demo Credentials</p>
+                    <div class="demo-options">
+                        <button class="demo-btn" onclick="fillDemoCredentials('free')">
+                            <i class="fas fa-user"></i>
+                            Free Account
+                        </button>
+                        <button class="demo-btn premium" onclick="fillDemoCredentials('premium')">
+                            <i class="fas fa-crown"></i>
+                            Premium Account
+                        </button>
+                        <button class="demo-btn admin" onclick="fillDemoCredentials('admin')">
+                            <i class="fas fa-shield-alt"></i>
+                            Admin Account
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sign Up Link -->
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="signup.html">Sign up for free</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Showcase -->
+        <div class="auth-showcase">
+            <div class="showcase-content">
+                <h2>Monitor. Report. Protect.</h2>
+                <p>Join thousands of users helping to monitor and report drainage issues in real-time.</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Interactive Maps</h4>
+                            <p>Real-time flood monitoring and visualization</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Instant Alerts</h4>
+                            <p>Get notified about floods in your area</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Community Reports</h4>
+                            <p>Share and view drainage issues</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Advanced Analytics</h4>
+                            <p>Track trends and patterns over time</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

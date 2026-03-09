@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - FloodWatch</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="auth-body">
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cloud-rain"></i>
+                </div>
+                <h1>FloodWatch</h1>
+                <p>Drainage Monitoring System</p>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div class="auth-content">
+                <h2>Create Account</h2>
+                <p class="auth-subtitle">Join our community of flood watchers</p>
+
+                <form id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input 
+                                type="text" 
+                                id="fullName" 
+                                placeholder="Enter your full name"
+                                required
+                                autocomplete="name"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="Enter your email"
+                                required
+                                autocomplete="email"
+                            >
+                        </div>
+                        <small class="input-hint">We'll never share your email with anyone</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                placeholder="Create a strong password"
+                                required
+                                autocomplete="new-password"
+                                minlength="6"
+                            >
+                            <button type="button" class="password-toggle" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                            <span class="strength-text" id="strengthText">Password strength</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input 
+                                type="password" 
+                                id="confirmPassword" 
+                                placeholder="Confirm your password"
+                                required
+                                autocomplete="new-password"
+                            >
+                            <button type="button" class="password-toggle" id="toggleConfirmPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" required>
+                            <span>I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-auth">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </button>
+                </form>
+
+                <!-- Membership Selection -->
+                <div class="membership-selection">
+                    <p class="selection-title">Choose your membership:</p>
+                    <div class="membership-options">
+                        <label class="membership-option">
+                            <input type="radio" name="membership" value="free" checked>
+                            <div class="option-card">
+                                <div class="option-header">
+                                    <i class="fas fa-user"></i>
+                                    <span class="option-title">Free</span>
+                                </div>
+                                <p class="option-price">$0/month</p>
+                                <ul class="option-features">
+                                    <li><i class="fas fa-check"></i> 3 reports/month</li>
+                                    <li><i class="fas fa-check"></i> Basic features</li>
+                                    <li><i class="fas fa-check"></i> Email alerts</li>
+                                </ul>
+                            </div>
+                        </label>
+
+                        <label class="membership-option premium-option">
+                            <input type="radio" name="membership" value="premium">
+                            <div class="option-card">
+                                <div class="popular-tag">POPULAR</div>
+                                <div class="option-header">
+                                    <i class="fas fa-crown"></i>
+                                    <span class="option-title">Premium</span>
+                                </div>
+                                <p class="option-price">$9.99/month</p>
+                                <ul class="option-features">
+                                    <li><i class="fas fa-check"></i> Unlimited reports</li>
+                                    <li><i class="fas fa-check"></i> All features</li>
+                                    <li><i class="fas fa-check"></i> Priority support</li>
+                                    <li><i class="fas fa-check"></i> Advanced analytics</li>
+                                </ul>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Sign In Link -->
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Showcase -->
+        <div class="auth-showcase">
+            <div class="showcase-content">
+                <h2>Why Join FloodWatch?</h2>
+                <p>Become part of a community dedicated to flood prevention and drainage monitoring.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">2,458</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">127</div>
+                        <div class="stat-label">Issues Resolved</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Monitoring</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.5h</div>
+                        <div class="stat-label">Avg Response</div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"FloodWatch helped our community identify and resolve drainage issues before they became major problems. The real-time alerts are invaluable!"</p>
+                    <div class="testimonial-author">
+                        <strong>Sarah Johnson</strong>
+                        <span>Community Manager</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
