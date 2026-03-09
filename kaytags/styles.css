@@ -1,0 +1,313 @@
+
+/* ================================
+   GOOGLE FONT
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+/* ================================
+   ROOT COLORS
+================================ */
+:root {
+    --primary: #10479d;
+    --primary-light: #3a6fd8;
+    --text-primary: #262626;
+    --text-secondary: #8E8E8E;
+}
+
+
+/* ================================
+   GLOBAL STYLES
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#f5f7fb,#dfe8ff);
+    color: var(--text-primary);
+}
+
+
+/* ================================
+   MAIN LAYOUT
+================================ */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+}
+
+
+/* ================================
+   NAVIGATION
+================================ */
+.navigation {
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    display: flex;
+    gap: 30px;
+}
+
+.navigation a {
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navigation a:hover {
+    color: var(--primary);
+}
+
+
+/* ================================
+   LOGO
+================================ */
+.logo {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 28px;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+
+/* ================================
+   WELCOME SECTION
+================================ */
+.welcome-message {
+    max-width: 420px;
+    
+}
+
+.welcome-message h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.welcome-message p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+
+/* ================================
+   SHARED FORM BOX
+================================ */
+.form-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+    display: none;
+    
+}
+
+.form-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.form-box.active {
+    display: flex;
+}
+
+
+/* ================================
+   LOGIN FORM
+================================ */
+#loginForm {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+
+/* ================================
+   SIGNUP FORM
+================================ */
+#signupForm {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+
+/* ================================
+   FORM HEADINGS
+================================ */
+h2 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+}
+
+/* Inputs */
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #0c0c0c;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+input::placeholder {
+    color: rgba(23, 23, 23, 0.7);
+}
+
+/* Input Groups */
+.input-group {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px 40px;
+    border-radius: 12px;
+    border: 1px solid #DBDBDB;
+    background: rgba(255,255,255,0.2);
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+    color: var(--text-primary);
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border: 2px solid var(--primary);
+    background: rgba(255,255,255,0.35);
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    transition: 0.3s;
+}
+
+.input-group .prefix { left: 12px; }
+.input-group .suffix { right: 12px; cursor: pointer; }
+
+
+/* ================================
+   BUTTONS
+================================ */
+button {
+    width: 100%;
+    height: 46px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg,var(--primary),var(--primary-light));
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.25s;
+    font-weight: 500;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16,71,157,0.3);
+}
+
+
+/* ================================
+   TEXT & LINKS
+================================ */
+p {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+p a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+.signup-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+
+/* ================================
+   MODAL
+================================ */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ================================
+   ANIMATIONS
+================================ */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    display: block !important;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    display: none !important;
+}
+
+
+/* ================================
+   ERROR MESSAGE
+================================ */
+.error-message {
+    display: block;
+    background: rgba(255,0,0,0.15);
+    color: #ff0000;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
